@@ -26,15 +26,22 @@
         </p>
     </section>
 
-    <section>
-        <h2>Experiencia Laboral</h2>
+   <section>
+    <h2>Experiencia Laboral</h2>
 
-        <div class="item">
-            <h3>Sin experiencia laboral formal</h3>
+    <ul id="lista_2">
+        <li >
+            <strong>Asesor Comercial</strong> - Roku <br>
             <span>Actualmente en formación académica</span>
-        </div>
-
+        </li>
+    </ul>
+        <form>
+      <label for="item">Nueva experiencia laboral:</label>
+      <input type="text" name="item" id="texto_2">
+      <button id="boton_2">Añadir</button>
+    </form>
     </section>
+
 
     <section>
         <h2>Educación</h2>
@@ -50,15 +57,19 @@
         </div>
 
     </section>
-
-    <section>
-        <h2>Habilidades</h2>
-        <ul>
+        <section id="habilidades">
+        <h2 >Habilidades</h2>
+        <ul id="lista">
             <li>Desarrollo web (HTML, CSS, JavaScript, React)</li>
             <li>Análisis de datos</li>
             <li>Python</li>
             <li>Manejo de bases de datos</li>
         </ul>
+        <form>
+      <label for="item">Ingresa una nueva habilidad:</label>
+      <input type="text" name="item" id="texto">
+      <button id="boton">Añadir</button>
+    </form>    
     </section>
 
     <section>
@@ -77,4 +88,67 @@
 </div>
 
 </body>
+
+<script>
+    const lista = document.getElementById("lista");
+    const texto = document.getElementById("texto");
+    const boton = document.getElementById("boton");
+
+     boton.addEventListener("click", (event) => {
+            event.preventDefault();
+            
+            const newItem = texto.value;
+            texto.value = '';
+
+            //creamos un nuevo elemento HTML para el item de la lista
+
+            const listItem = document.createElement("li") //elemento de lista "li"
+            const listText = document.createElement("span") //seccion del texto
+            const listBtn = document.createElement("button") //seccion del texto 
+
+            listItem.appendChild(listText);
+            listText.textContent = newItem;
+                        
+            listItem.appendChild(listBtn);
+            listBtn.textContent = "Delete";
+            
+            lista.appendChild(listItem)
+
+            listBtn.addEventListener('click', () => {
+                lista.removeChild(listItem);
+            } );
+            texto.focus(); 
+        } );
+</script>
+
+<script>
+    const lista_2 = document.getElementById("lista_2");
+    const texto_2 = document.getElementById("texto_2");
+    const boton_2 = document.getElementById("boton_2");
+
+    boton_2.addEventListener("click", (event) => {
+        event.preventDefault();
+
+        const newItem = texto_2.value.trim();
+        texto_2.value = '';
+
+        const listItem = document.createElement("li");
+        const listText = document.createElement("span");
+        const listBtn = document.createElement("button");
+
+        listText.textContent = newItem;
+        listBtn.textContent = "Eliminar";
+
+        listItem.appendChild(listText);
+        listItem.appendChild(listBtn);
+        lista_2.appendChild(listItem);
+
+        listBtn.addEventListener('click', () => {
+            lista_2.removeChild(listItem);
+        });
+
+        texto_2.focus();
+    });
+</script>
+
 </html>
